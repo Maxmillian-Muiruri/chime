@@ -566,15 +566,32 @@
     </div>
 
     <script>
-      // Initial values
-      let checkingBalance = 15606.96;
-      let savingsBalance = 0.84;
+      // Initial values (will be randomized on load)
+      let checkingBalance;
+      let savingsBalance;
       let transactions = [
-        { id: "transaction-1", amount: -2500.0, isNegative: true },
-        { id: "transaction-2", amount: 18106.33, isNegative: false },
-        { id: "transaction-3", amount: -103.0, isNegative: true },
-        { id: "transaction-4", amount: -56.64, isNegative: true },
+        { id: "transaction-1", isNegative: true },
+        { id: "transaction-2", isNegative: false },
+        { id: "transaction-3", isNegative: true },
+        { id: "transaction-4", isNegative: true },
       ];
+
+      function getRandomAmount(min, max, decimals = 2) {
+        const amount = Math.random() * (max - min) + min;
+        return parseFloat(amount.toFixed(decimals));
+      }
+
+      function randomizeBalancesAndTransactions() {
+        // Randomize balances
+        checkingBalance = getRandomAmount(1000, 20000);
+        savingsBalance = getRandomAmount(0, 5000);
+
+        // Randomize transaction amounts
+        transactions[0].amount = -getRandomAmount(100, 5000); // negative
+        transactions[1].amount = getRandomAmount(100, 20000); // positive
+        transactions[2].amount = -getRandomAmount(20, 500); // negative
+        transactions[3].amount = -getRandomAmount(10, 200); // negative
+      }
 
       function formatCurrency(amount) {
         const absAmount = Math.abs(amount);
@@ -591,26 +608,15 @@
         return `${sign}${formatted}`;
       }
 
-      function incrementAmounts() {
-        // Increment checking balance
-        checkingBalance += Math.random() * 50 + 10; // Random increment between $10-$60
+      function updateUI() {
+        // Update balances
         const checkingElement = document.getElementById("checking-balance");
         checkingElement.innerHTML = formatCurrency(checkingBalance);
-
-        // Increment savings balance
-        savingsBalance += Math.random() * 5 + 1; // Random increment between $1-$6
         const savingsElement = document.getElementById("savings-balance");
         savingsElement.innerHTML = formatCurrency(savingsBalance);
 
-        // Increment transaction amounts
+        // Update transactions
         transactions.forEach((transaction) => {
-          const increment = Math.random() * 20 + 5; // Random increment between $5-$25
-          if (transaction.isNegative) {
-            transaction.amount -= increment; // Make negative amounts more negative
-          } else {
-            transaction.amount += increment; // Make positive amounts more positive
-          }
-
           const element = document.getElementById(transaction.id);
           element.innerHTML = formatTransactionAmount(
             transaction.amount,
@@ -619,13 +625,11 @@
         });
       }
 
-      // Start incrementing every 3 seconds
-      // setInterval(incrementAmounts, 3000);
+      // On page load, randomize and update
+      randomizeBalancesAndTransactions();
+      updateUI();
 
-      // Increment amounts only once on page load
-      incrementAmounts();
-
-      // Optional: Add click handler for the "Get $100" button to give immediate increment
+      // "Get $100" button still works as before
       document
         .querySelector(".get-money")
         .addEventListener("click", function () {
