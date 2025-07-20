@@ -178,6 +178,7 @@
         color: #333;
         margin-bottom: 24px;
         letter-spacing: -1px;
+        transition: all 0.3s ease;
       }
 
       .balance .cents {
@@ -266,6 +267,7 @@
         font-size: 16px;
         font-weight: 600;
         text-align: right;
+        transition: all 0.3s ease;
       }
 
       .positive {
@@ -297,6 +299,7 @@
         font-weight: 700;
         color: #333;
         letter-spacing: -0.5px;
+        transition: all 0.3s ease;
       }
 
       .savings-balance .cents {
@@ -388,16 +391,6 @@
           <div class="logo">chime</div>
         </div>
         <div class="status-right">
-          <!-- <div class="settings-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
-                    </svg>
-                </div>
-                <div class="help-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z"/>
-                    </svg>
-                </div> -->
           <button class="get-money">Get $100</button>
         </div>
       </div>
@@ -405,19 +398,11 @@
       <div class="credit-section">
         <div class="credit-header">
           <div class="credit-icon">
-            <!-- <svg viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24">
               <path
                 d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"
               />
-            </svg> -->
-            <img
-              src="/chime.png"
-              alt=""
-              srcset=""
-              width="40"
-              height="40"
-              background-color="white"
-            />
+            </svg>
           </div>
           <div class="credit-text">
             <div class="credit-title">Credit tracking</div>
@@ -441,7 +426,9 @@
               </svg>
             </div>
           </div>
-          <div class="balance">$15,606<span class="cents">.96</span></div>
+          <div class="balance" id="checking-balance">
+            $15,606<span class="cents">.96</span>
+          </div>
 
           <div class="transactions">
             <div class="transaction">
@@ -456,7 +443,9 @@
                 <div class="transaction-name">Cash App*</div>
                 <div class="transaction-time">2 minutes ago</div>
               </div>
-              <div class="transaction-amount negative">-$2,500.00</div>
+              <div class="transaction-amount negative" id="transaction-1">
+                -$2,500.00
+              </div>
             </div>
             <div class="transaction">
               <div class="transaction-icon money-icon">
@@ -470,7 +459,9 @@
                 <div class="transaction-name">#40458</div>
                 <div class="transaction-time">10 minutes ago</div>
               </div>
-              <div class="transaction-amount positive">+$18,106.33</div>
+              <div class="transaction-amount positive" id="transaction-2">
+                +$18,106.33
+              </div>
             </div>
             <div class="transaction">
               <div class="transaction-icon cashapp-icon">
@@ -484,7 +475,9 @@
                 <div class="transaction-name">Cash App*</div>
                 <div class="transaction-time">15 hours ago</div>
               </div>
-              <div class="transaction-amount negative">-$103.00</div>
+              <div class="transaction-amount negative" id="transaction-3">
+                -$103.00
+              </div>
             </div>
             <div class="transaction">
               <div class="transaction-icon card-icon">
@@ -498,7 +491,9 @@
                 <div class="transaction-name">Vzwrlss*Prepaid Pymnt,</div>
                 <div class="transaction-time">15 hours ago</div>
               </div>
-              <div class="transaction-amount negative">-$56.64</div>
+              <div class="transaction-amount negative" id="transaction-4">
+                -$56.64
+              </div>
             </div>
           </div>
 
@@ -526,7 +521,9 @@
               </svg>
             </div>
           </div>
-          <div class="savings-balance">$0<span class="cents">.84</span></div>
+          <div class="savings-balance" id="savings-balance">
+            $0<span class="cents">.84</span>
+          </div>
         </div>
       </div>
 
@@ -571,5 +568,72 @@
         </div>
       </div>
     </div>
+
+    <script>
+      // Initial values
+      let checkingBalance = 15606.96;
+      let savingsBalance = 0.84;
+      let transactions = [
+        { id: "transaction-1", amount: -2500.0, isNegative: true },
+        { id: "transaction-2", amount: 18106.33, isNegative: false },
+        { id: "transaction-3", amount: -103.0, isNegative: true },
+        { id: "transaction-4", amount: -56.64, isNegative: true },
+      ];
+
+      function formatCurrency(amount) {
+        const absAmount = Math.abs(amount);
+        const dollars = Math.floor(absAmount);
+        const cents = Math.round((absAmount - dollars) * 100);
+        return `$${dollars.toLocaleString()}<span class="cents">.${cents
+          .toString()
+          .padStart(2, "0")}</span>`;
+      }
+
+      function formatTransactionAmount(amount, isNegative) {
+        const sign = isNegative ? "-" : "+";
+        const formatted = formatCurrency(Math.abs(amount));
+        return `${sign}${formatted}`;
+      }
+
+      function incrementAmounts() {
+        // Increment checking balance
+        checkingBalance += Math.random() * 50 + 10; // Random increment between $10-$60
+        const checkingElement = document.getElementById("checking-balance");
+        checkingElement.innerHTML = formatCurrency(checkingBalance);
+
+        // Increment savings balance
+        savingsBalance += Math.random() * 5 + 1; // Random increment between $1-$6
+        const savingsElement = document.getElementById("savings-balance");
+        savingsElement.innerHTML = formatCurrency(savingsBalance);
+
+        // Increment transaction amounts
+        transactions.forEach((transaction) => {
+          const increment = Math.random() * 20 + 5; // Random increment between $5-$25
+          if (transaction.isNegative) {
+            transaction.amount -= increment; // Make negative amounts more negative
+          } else {
+            transaction.amount += increment; // Make positive amounts more positive
+          }
+
+          const element = document.getElementById(transaction.id);
+          element.innerHTML = formatTransactionAmount(
+            transaction.amount,
+            transaction.isNegative
+          );
+        });
+      }
+
+      // Start incrementing every 3 seconds
+      setInterval(incrementAmounts, 3000);
+
+      // Optional: Add click handler for the "Get $100" button to give immediate increment
+      document
+        .querySelector(".get-money")
+        .addEventListener("click", function () {
+          checkingBalance += 100;
+          const checkingElement = document.getElementById("checking-balance");
+          checkingElement.innerHTML = formatCurrency(checkingBalance);
+        });
+    </script>
   </body>
 </html>
