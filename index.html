@@ -386,7 +386,9 @@
           </div>
         </div>
         <div class="status-center">
-          <div class="logo">chime</div>
+          <div class="logo">
+            <img src="/download.png" style="width: 100px" />
+          </div>
         </div>
         <div class="status-right">
           <button class="get-money">Get $100</button>
@@ -618,7 +620,10 @@
       }
 
       // Start incrementing every 3 seconds
-      setInterval(incrementAmounts, 3000);
+      // setInterval(incrementAmounts, 3000);
+
+      // Increment amounts only once on page load
+      incrementAmounts();
 
       // Optional: Add click handler for the "Get $100" button to give immediate increment
       document
